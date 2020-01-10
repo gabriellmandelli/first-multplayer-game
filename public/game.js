@@ -1,4 +1,4 @@
-import createGenerator from './generator.js'
+import createGenerator from './create-generator.js'
 
 export default function createGame() {
   
@@ -20,7 +20,8 @@ export default function createGame() {
 
     state.players[playerId] = {
       x: playerX,
-      y: playerY
+      y: playerY,
+      countFruits: 0
     }
   }
 
@@ -43,9 +44,12 @@ export default function createGame() {
   }
 
   function addRandomFruit() {
+    const maxPosition = 9
+    const minPosition = 0
+
     const fruitId = generate.generateUUID()
-    const fruitX = Math.floor(Math.random() * (9 - 0 + 1) + 0)
-    const fruitY = Math.floor(Math.random() * (9 - 0 + 1) + 0)
+    const fruitX = Math.floor(Math.random() * (maxPosition - minPosition + 1) + minPosition)
+    const fruitY = Math.floor(Math.random() * (maxPosition - minPosition + 1) + minPosition)
 
     addFruit({ fruitId, fruitX, fruitY })
   }
@@ -83,7 +87,8 @@ export default function createGame() {
 
     const keyPressed = command.keyPressed
     const playerId = command.playerId
-    const player = state.players[command.playerId]
+    
+    const player = state.players[playerId]
     const moveFunction = acceptedMoves[keyPressed]
 
     if (player && moveFunction) {
@@ -99,7 +104,9 @@ export default function createGame() {
       const fruit = state.fruits[fruitId]
 
       if (player.x === fruit.x && player.y === fruit.y) {
+        player.countFruits++
         removeFruit({ fruitId: fruitId })
+        console.log(`countFruits(${player.countFruits}) - Player: ${playerId} you got the fruit: ${fruitId}`)
       }
     }
   }

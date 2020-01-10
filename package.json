@@ -1,0 +1,19 @@
+{
+  "name": "first-multplayer-game",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "repository": "https://github.com/gabriellmandelli/first-multplayer-game.git",
+  "author": "Gabriel Mandelli <gabriel-mandelli@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

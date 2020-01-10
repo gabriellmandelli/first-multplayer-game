@@ -1,2 +1,2 @@
 To run this game, you need use this command:
-npx serve
+npx serve or yarn dev
